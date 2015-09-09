@@ -26,7 +26,9 @@ app.on('ready', function() {
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
-    globalShortcut.register('CmdOrCtrl+Q', function(){
-        mainWindow.close();
-    });
+});
+
+app.on('will-quit', function(){
+    globalShortcut.unregisterAll();
+    app.quit();
 });

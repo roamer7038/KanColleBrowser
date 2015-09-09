@@ -1,7 +1,12 @@
 {
   "name": "鎮守府ぐらし！",
   "version": "0.0.1",
+  "author": "roamer7038",
   "main": "app.js",
+  "devDependencies": {
+    "electron-prebuilt": "^0.30.6",
+    "electron-packager": "^5.1.0"
+  },
   "dependencies":{
     "mkdirp": "0.5.1"
   }

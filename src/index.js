@@ -40,7 +40,7 @@ function insertCss(){
     webview.insertCSS('body{ overflow:hidden; }');
     webview.insertCSS('#dmm-ntgnavi-renew, #spacing_top, #sectionWrap, .inner, div#ntg-recommend { display: none !important; margin: 0; padding: 0;}');
     webview.insertCSS('html, body, #area-game, #main-ntg, #page, #w, #game_frame { width: 800px; height: 480px; margin: 0 !important; padding: 0 !important;}');
-    webview.insertCSS('#area-game { position: absolute; left: 0; top: -16px; z-index: 1000;}');
+    webview.insertCSS('#area-game { position: absolute; left: 0; top: -36px; z-index: 1000;}');
 }
 
 function shortcut(){

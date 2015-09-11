@@ -8,7 +8,7 @@ The KanColleBrowser made with Electron.
 * Mute Volume.
 
 # Image
-![鎮守府ぐらし！](https://github.com/roamer7038/KanColleBrowser/images/image.png)
+![鎮守府ぐらし！](images/image.png)
 
 # Download
 Not released yet.

@@ -15,3 +15,8 @@ Not released yet.
 
 # Note
 I does not bear responsibility, such as BAN of using this software.  
+
+# LICENSE
+[MIT](./LICENSE)
+
+Copyright (c) 2015 @roamer7038 

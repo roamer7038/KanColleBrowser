@@ -1,13 +1,26 @@
 {
-  "name": "鎮守府ぐらし！",
-  "version": "0.0.1",
+  "name": "officelife",
+  "version": "0.0.2",
   "author": "roamer7038",
   "main": "app.js",
   "devDependencies": {
-    "electron-prebuilt": "^0.30.6",
-    "electron-packager": "^5.1.0"
+    "electron-prebuilt": "0.35.1",
+    "electron-packager": "5.1.1"
   },
-  "dependencies":{
+  "dependencies": {
     "mkdirp": "0.5.1"
-  }
+  },
+  "description": "The KanColleBrowser made with Electron.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roamer7038/KanColleBrowser.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roamer7038/KanColleBrowser/issues"
+  },
+  "homepage": "https://github.com/roamer7038/KanColleBrowser#readme"
 }

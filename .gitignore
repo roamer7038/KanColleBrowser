@@ -2,11 +2,13 @@
 *.DS_Store
 *.idea
 *x64/
-src/plugin/
 =======
 # Logs
 logs
 *.log
+
+# FlashPlayer
+*.plugin
 
 # Runtime data
 pids

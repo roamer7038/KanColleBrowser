@@ -1,13 +1,17 @@
-var fs = require('fs');
-var os = require('os');
-var remote = require('remote');
-var NativeImage = require('native-image');
-var mkdirp = require('mkdirp');
-var application = require('./package.json');
-var path = os.homedir() + '/Pictures/'+ application.name +'/';
+console.log('Loading capture.js');
+
+//const fs = require('fs');
+const os = require('os');
+const mkdirp = require('mkdirp');
+//const electron = require('electron');
+//const remote = electron.remote;
+const nativeImage = electron.nativeImage;
+
+var appName = '鎮守府ぐらし！';
+var path = os.homedir() + '/Pictures/'+ appName +'/';
 
 module.exports = function(){
-    var image = NativeImage.createEmpty();
+    var image = nativeImage.createEmpty();
     var stamp = timestamp();
     var rect = {
         x: 0,

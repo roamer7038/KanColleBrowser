@@ -1,14 +1,15 @@
-var fs = require('fs');
-var remote = require('remote');
-var globalShortcut = remote.require('global-shortcut');
-var app = remote.require('app');
-var capture = require('./capture');
+console.log('loading index.js');
+
+const fs = require('fs');
+const electron = require('electron');
+const remote = electron.remote;
+const app = remote.app;
+const globalShortcut = remote.globalShortcut;
+const capture = require('./capture');
 
 var webview = document.getElementById("view");
 
 setTimeout(function() {
-    var title = webview.getTitle();
-    console.log(title);
     webview.setAudioMuted(true);
 }, 1500);
 
@@ -20,7 +21,6 @@ webview.addEventListener('did-finish-load', function(){
 remote.getCurrentWindow().on('focus', function() {
     shortcut();
 });
-
 remote.getCurrentWindow().on('blur', function(){
     globalShortcut.unregisterAll();
 });
@@ -47,11 +47,9 @@ function shortcut(){
     globalShortcut.register('CmdOrCtrl+M', function(){
         mute();
     });
-
     globalShortcut.register('CmdOrCtrl+S', function(){
         capture();
     });
-
     globalShortcut.register('CmdOrCtrl+Q', function(){
         app.quit();
     });

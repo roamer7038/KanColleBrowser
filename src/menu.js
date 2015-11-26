@@ -1,18 +1,23 @@
-var remote = require('remote');
-var Menu = remote.require('menu');
-var capture = require('./capture');
-var application = require('./package.json');
-document.title = application.name;
+console.log('loading menu.js');
+
+//const electron = require('electron');
+//const remote = electron.remote;
+const Menu = remote.Menu;
+//const capture = require('./capture');
+const application = require('./package.json');
+
+var appName = '鎮守府ぐらし！';
+document.title = appName;
 
 var template = [
     {
-        label: application.name,
+        label: appName,
         submenu: [
             {
-                label: application.name + ' について',
+                label: appName + ' について',
                 click: function() {
                     alert(
-                        application.name + '\n' +
+                        appName + '\n' +
                         'バージョン  ' + application.version );
                 }
             },

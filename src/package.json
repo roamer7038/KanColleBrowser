@@ -13,7 +13,7 @@
   "description": "The KanColleBrowser made with Electron.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "electron-packager . KanColleBrowser --platform=darwin --arch=x64 --version=0.35.1 --out=../bulid/Release/ --overwrite"
+    "build": "electron-packager . KanColleBrowser --platform=darwin --arch=x64 --version=0.35.1 --out=../build/Release/ --overwrite"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,46 @@
+#output {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#output a {
+    color: #111;
+}
+
+.img_box {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3px;
+    margin-left: 5px;
+}
+
+.img_box img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+.img_box img.active {
+    background: #E0E0E0;
+    border-radius: 3px;
+}
+
+.img_box p {
+    margin-top: 2px;
+    word-break: break-all;
+}
+
+.filename {
+    padding: 1px 3px;
+}
+
+img.active + p > span.filename {
+    display: inline-block;
+    background: #116CD6;
+    border-radius: 3px;
+    color: #fff;
+}

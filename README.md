@@ -1,22 +1,23 @@
 # 鎮守府ぐらし！
 The KanColleBrowser made with Electron.
 
-# Features
-* Runs on OS X 10.10.5.
+## Features
+* Runs on OS X 10.11.1.
 * Display only the game screen.
 * ScreenShots.
 * Mute Volume.
+* Tweet ScreenShot.
 
-# Image
+## Image
 ![鎮守府ぐらし！](images/image.png)
 
-# Download
+## Download
 Not released yet.
 
-# Note
+## Note
 I does not bear responsibility, such as BAN of using this software.  
 
-# License
+## License
 [MIT](./LICENSE)
 
 Copyright (c) 2015 @roamer7038 

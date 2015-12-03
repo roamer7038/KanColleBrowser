@@ -1,12 +1,7 @@
-console.log('loading menu.js');
+'use strict';
 
-//const electron = require('electron');
-//const remote = electron.remote;
 const Menu = remote.Menu;
-//const capture = require('./capture');
 const application = require('./package.json');
-
-var appName = '鎮守府ぐらし！';
 document.title = appName;
 
 var template = [
@@ -18,7 +13,8 @@ var template = [
                 click: function() {
                     alert(
                         appName + '\n' +
-                        'バージョン  ' + application.version );
+                        'バージョン  ' + application.version + '\n\n' +
+                        'Copyright (c) 2015 @roamer7038 ');
                 }
             },
             {
@@ -55,11 +51,29 @@ var template = [
                 label: 'スクリーンショット',
                 accelerator: 'CmdOrCtrl+S',
                 click: function() { capture(); }
+            },
+            {
+                label: '画像をツイート',
+                accelerator: 'CmdOrCtrl+T',
+                click: function() { tweetCapture(); }
+            }
+        ]
+    },
+    {
+        label: 'ヘルプ',
+        role: 'help',
+        submenu: [
+            {
+                label: appName + ' ヘルプ',
+                click: function () {
+                    electron.shell.openExternal('https://github.com/roamer7038/KanColleBrowser')
+                }
             }
         ]
     }
+
 ];
 
-menu = Menu.buildFromTemplate(template);
+const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 

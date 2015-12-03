@@ -1,13 +1,15 @@
-console.log('loading index.js');
+'use strict';
 
 const fs = require('fs');
 const electron = require('electron');
+const os = require('os');
 const remote = electron.remote;
 const app = remote.app;
 const globalShortcut = remote.globalShortcut;
+const BrowserWindow = remote.BrowserWindow;
+const appName = '鎮守府ぐらし！';
 const capture = require('./capture');
-
-var webview = document.getElementById("view");
+const webview = document.getElementById("view");
 
 setTimeout(function() {
     webview.setAudioMuted(true);
@@ -53,4 +55,12 @@ function shortcut(){
     globalShortcut.register('CmdOrCtrl+Q', function(){
         app.quit();
     });
+}
+
+function tweetCapture(){
+    const ssWindow = new BrowserWindow({
+        width: 650,
+        height: 400
+    });
+    ssWindow.loadUrl('file://'+__dirname+'/tweet_capture/index.html');
 }

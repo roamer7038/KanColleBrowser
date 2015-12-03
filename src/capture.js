@@ -1,34 +1,28 @@
-console.log('Loading capture.js');
+'use strict';
 
-//const fs = require('fs');
-const os = require('os');
 const mkdirp = require('mkdirp');
-//const electron = require('electron');
-//const remote = electron.remote;
 const nativeImage = electron.nativeImage;
-
-var appName = '鎮守府ぐらし！';
-var path = os.homedir() + '/Pictures/'+ appName +'/';
+const PATH = os.homedir() + '/Pictures/'+ appName +'/';
 
 module.exports = function(){
-    var image = nativeImage.createEmpty();
-    var stamp = timestamp();
-    var rect = {
+    const image = nativeImage.createEmpty();
+    const stamp = timestamp();
+    const rect = {
         x: 0,
         y: 0,
         width: 800,
         height: 480
     };
     remote.getCurrentWindow().capturePage(rect, function(image){
-        mkdirp(path, function(err){
+        mkdirp(PATH, function(err){
             if(err){ console.log(err);}
-            fs.writeFile(path+ stamp + '.png', image.toPng());
+            fs.writeFile(PATH+ stamp + '.png', image.toPng());
         });
     });
 };
 
 function timestamp(){
-    var now = new Date(),
+    const now = new Date(),
         year = now.getFullYear().toString(),
         month = (now.getMonth()+1).toString(),
         date = now.getDate().toString(),

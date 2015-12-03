@@ -1,16 +1,18 @@
+'use strict';
+
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const globalShortcut = electron.globalShortcut;
 
-electron.crashReporter.start();
+//electron.crashReporter.start();
 
 var mainWindow = null;
 app.on('window-all-closed', function() {
     app.quit();
 });
 
-app.commandLine.appendSwitch('ppapi-flash-path', __dirname + '/plugin/PepperFlashPlayer.plugin');
+app.commandLine.appendSwitch('ppapi-flash-path', __dirname + '/plugins/PepperFlashPlayer.plugin');
 app.commandLine.appendSwitch('ppapi-flash-version', '20.0.0.228');
 
 

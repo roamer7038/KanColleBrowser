@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>スクリーンショット</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="lib/css/photon.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="window">
@@ -17,12 +17,16 @@
     </div>
     <footer class="toolbar toolbar-footer">
         <div class="toolbar-actions">
+            <form name="tweetForm">
+                <div class="form-group">
+                    <textarea name="tweetArea" id="tweet-area" rows="2" class="form-control" maxlength="120"></textarea>
+                </div>
+            </form>
             <button class="btn btn-default" id="close">
                 Close
             </button>
-
             <button class="btn btn-primary pull-right" id="upload">
-                Upload
+                Tweet
             </button>
         </div>
     </footer>

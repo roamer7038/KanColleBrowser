@@ -3,16 +3,19 @@
 // jQueryをローカルで扱う
 window.jQuery = window.$ = require('./lib/jquery.min.js');
 
-// path先のディレクトリの画像一覧を出力
+
 const fs = require('fs');
 const os = require('os');
 const electron = require('electron');
 const remote = electron.remote;
 const BrowserWindow = remote.BrowserWindow;
+const Twitter = require('twitter');
+const OAuth = require('oauth').OAuth;
 const reg = /(.[.]jpg|.[.]jpeg|.[.]png|.[.]gif)/;
 let PATH = os.homedir() + '/Pictures/鎮守府ぐらし！/';
 let img, media;
 
+// PATH先のディレクトリの画像一覧を出力
 fs.readdir( PATH , function(err, files){
     if (err) throw err;
     let fileList = [];
@@ -23,7 +26,7 @@ fs.readdir( PATH , function(err, files){
     });
     fileList.forEach(function (file) {
         let filePath = PATH + file;
-        img = '<span class="img_box"><img src="'
+        img = '<span class="img-box"><img src="'
             + filePath + '"><p><span class="filename">'
             + file +'</span></p></span>';
         jQuery('#output').append(img);
@@ -31,15 +34,13 @@ fs.readdir( PATH , function(err, files){
 });
 
 
-const Twitter = require('twitter');
-const OAuth = require('oauth').OAuth;
-
 const token = {
     CONSUMER_KEY : 'dHDozUteB2vO4yJGcT2Sa7SzF',
     CONSUMER_SECRET : 'kzSEsFTGl7YgKBXrwLrMFeYjVozBxZQ4IAVE4cEubPxYKsHukq',
     ACCESS_TOKEN_KEY : null,
     ACCESS_TOKEN_SECRET : null
 };
+
 try {
     const account = require('./account');
     token.ACCESS_TOKEN_KEY = account.ACCESS_TOKEN_KEY;
@@ -95,18 +96,20 @@ const client = new Twitter({
 
 // 画像をツイートする
 function post(){
+    let tweet = document.forms.tweetForm.tweetArea.value;
     let data = fs.readFileSync(media);
     client.post('media/upload', {media: data}, function(error, media, response){
         if(!error){
             console.log(media);
         }
         let status = {
-            status: 'hoge',
+            status: tweet,
             media_ids: media.media_id_string
         };
         client.post('statuses/update', status, function(error, tweet, response){
             if(!error) {
                 console.log(tweet);
+                document.forms.tweetForm.tweetArea.value = '';
             }
         });
     });

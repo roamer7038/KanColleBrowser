@@ -13,7 +13,7 @@ app.on('window-all-closed', function() {
 });
 
 app.commandLine.appendSwitch('ppapi-flash-path', __dirname + '/plugins/PepperFlashPlayer.plugin');
-app.commandLine.appendSwitch('ppapi-flash-version', '20.0.0.228');
+app.commandLine.appendSwitch('ppapi-flash-version', '20.0.0.255');
 
 
 app.on('ready', function() {

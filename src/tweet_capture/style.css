@@ -1,3 +1,12 @@
+textarea {
+    resize: none;
+}
+
+#tweet-area {
+    margin-bottom: -11px;
+    border: 1px solid #ccc;
+}
+
 #output {
     display: flex;
     flex-wrap: wrap;
@@ -7,7 +16,7 @@
     color: #111;
 }
 
-.img_box {
+.img-box {
     display: inline-block;
     width: 150px;
     height: 150px;
@@ -17,19 +26,19 @@
     margin-left: 5px;
 }
 
-.img_box img {
+.img-box img {
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
     padding: 15px;
 }
 
-.img_box img.active {
+.img-box img.active {
     background: #E0E0E0;
     border-radius: 3px;
 }
 
-.img_box p {
+.img-box p {
     margin-top: 2px;
     word-break: break-all;
 }

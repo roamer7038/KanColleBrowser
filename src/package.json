@@ -10,9 +10,7 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "oauth": "^0.9.14",
-    "twitter": "^1.2.5",
-    "photon": "https://photonkit.com",
-    "jquery": "https://jquery.com"
+    "twitter": "^1.2.5"
   },
   "description": "The KanColleBrowser made with Electron.",
   "scripts": {
@@ -21,6 +19,10 @@
   },
   "plugins":{
     "flash": "plugins/PepperFlashPlayer.plugin"
+  },
+  "lib":{
+    "photon": "https://github.com/connors/photon.git",
+    "jquery": "http://code.jquery.com/jquery-2.1.4.min.js"
   },
   "repository": {
     "type": "git",

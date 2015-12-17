@@ -24,7 +24,7 @@ var template = [
             }
         ]
     },
-    {
+    /*{
         label: '表示',
         submenu: [
             {
@@ -38,7 +38,7 @@ var template = [
                 click: function() { remote.getCurrentWindow().toggleDevTools(); }
             }
         ]
-    },
+    },*/
     {
         label: 'ウィンドウ',
         submenu: [

@@ -22,12 +22,13 @@ module.exports = function(){
 };
 
 function timestamp(){
-    const now = new Date(),
-        year = now.getFullYear().toString(),
-        month = (now.getMonth()+1).toString(),
-        date = now.getDate().toString(),
-        hour = now.getHours().toString(),
-        min = now.getMinutes().toString(),
-        sec = now.getSeconds().toString();
+    const
+        now = new Date(),
+        year = now.getFullYear(),
+        month = ("0" + (now.getMonth()+1)).slice(-2),
+        date = ("0" + (now.getDate())).slice(-2),
+        hour = ("0" + now.getHours()).slice(-2),
+        min = ("0" + now.getMinutes()).slice(-2),
+        sec = ("0" + now.getSeconds()).slice(-2);
     return (year + '-' + month + '-' + date + '-' + hour + min + sec);
 }

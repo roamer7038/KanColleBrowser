@@ -1,7 +1,7 @@
 'use strict';
 
 // jQueryをローカルで扱う
-window.jQuery = window.$ = require('./lib/jquery.min.js');
+window.jQuery = window.$ = require('jquery');
 
 
 const fs = require('fs');

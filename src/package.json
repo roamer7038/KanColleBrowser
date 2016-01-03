@@ -1,6 +1,6 @@
 {
   "name": "officelife",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "roamer7038",
   "main": "app.js",
   "devDependencies": {
@@ -10,7 +10,9 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "oauth": "^0.9.14",
-    "twitter": "^1.2.5"
+    "twitter": "^1.2.5",
+    "jquery": "^2.1.4",
+    "photon": "git://github.com/connors/photon.git"
   },
   "description": "The KanColleBrowser made with Electron.",
   "scripts": {
@@ -19,10 +21,6 @@
   },
   "plugins":{
     "flash": "plugins/PepperFlashPlayer.plugin"
-  },
-  "lib":{
-    "photon": "https://github.com/connors/photon.git",
-    "jquery": "http://code.jquery.com/jquery-2.1.4.min.js"
   },
   "repository": {
     "type": "git",

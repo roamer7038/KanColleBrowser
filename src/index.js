@@ -7,19 +7,25 @@ const remote = electron.remote;
 const app = remote.app;
 const globalShortcut = remote.globalShortcut;
 const BrowserWindow = remote.BrowserWindow;
-const appName = '鎮守府ぐらし！';
+
+const application = require('./package.json');
+application.name = "鎮守府ぐらし！";
+document.title = application.name;
+let PATH = os.homedir() + '/Pictures/'+ application.name +'/'; //スクショ保存場所
+
 const capture = require('./capture');
-const webview = document.getElementById("view");
+const webview = document.getElementById("webview");
 
-setTimeout(function() {
+webview.addEventListener('did-start-loading', function() {
     webview.setAudioMuted(true);
-}, 1500);
+});
 
-webview.addEventListener('did-finish-load', function(){
+webview.addEventListener('did-finish-load', function() {
     insertCss();
     shortcut();
 });
 
+// ウィンドウアクティブ・ノンアクティブ時のグローバルショートカット切り替え
 remote.getCurrentWindow().on('focus', function() {
     shortcut();
 });
@@ -27,9 +33,7 @@ remote.getCurrentWindow().on('blur', function(){
     globalShortcut.unregisterAll();
 });
 
-
-
-function mute(){
+function volumeMute(){
     if(webview.isAudioMuted()){
         webview.setAudioMuted(false);
     }
@@ -38,29 +42,39 @@ function mute(){
     }
 }
 
+// 余分な部分を非表示にする
 function insertCss(){
-    webview.insertCSS('body{ overflow:hidden; }');
-    webview.insertCSS('#dmm-ntgnavi-renew, #spacing_top, #sectionWrap, .inner, div#ntg-recommend { display: none !important; margin: 0; padding: 0;}');
-    webview.insertCSS('html, body, #area-game, #main-ntg, #page, #w, #game_frame { width: 800px; height: 480px; margin: 0 !important; padding: 0 !important;}');
-    webview.insertCSS('#area-game { position: absolute; left: 0; top: -36px; z-index: 1000;}');
+    fs.readFile('./css/insert.css','utf-8',function(err, data) {
+        webview.insertCSS(data);
+    });
 }
+
 
 function shortcut(){
     globalShortcut.register('CmdOrCtrl+M', function(){
-        mute();
+        volumeMute();
     });
     globalShortcut.register('CmdOrCtrl+S', function(){
-        capture();
+        capture(PATH);
+        if (TweetWindow) { TweetWindow.reload(); }
     });
     globalShortcut.register('CmdOrCtrl+Q', function(){
         app.quit();
     });
 }
 
+let TweetWindow = null;
 function tweetCapture(){
-    const ssWindow = new BrowserWindow({
+    if ( TweetWindow ) {
+        TweetWindow.focus();
+        return 0;
+    }
+    TweetWindow = new BrowserWindow({
         width: 650,
         height: 400
     });
-    ssWindow.loadUrl('file://'+__dirname+'/tweet_capture/index.html');
+    TweetWindow.loadUrl('file://'+__dirname+'/tweet_capture/tweet_capture.html');
+    TweetWindow.on('close', function () {
+        TweetWindow = null;
+    });
 }

@@ -29,7 +29,7 @@ fs.readdir( PATH , function(err, files){
         img = '<span class="img-box"><img src="'
             + filePath + '"><p><span class="filename">'
             + file +'</span></p></span>';
-        jQuery('#output').append(img);
+        $('#output').append(img);
     });
 });
 
@@ -116,7 +116,7 @@ function post(){
 }
 
 // クリックした画像のURIを取得
-jQuery(document).on('click', "img", function(){
+$(document).on('click', "img", function(){
     $('img').removeClass('active');
     $(this).addClass('active');
     media = this.src;

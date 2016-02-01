@@ -1,21 +1,14 @@
 'use strict';
 
 const Menu = remote.Menu;
-const application = require('./package.json');
-document.title = appName;
 
 var template = [
     {
-        label: appName,
+        label: application.name,
         submenu: [
             {
-                label: appName + ' について',
-                click: function() {
-                    alert(
-                        appName + '\n' +
-                        'バージョン  ' + application.version + '\n\n' +
-                        'Copyright (c) 2015 @roamer7038 ');
-                }
+                label: application.name + ' について',
+                role: 'about'
             },
             {
                 label: '終了',
@@ -24,33 +17,43 @@ var template = [
             }
         ]
     },
-    /*{
+    {
         label: '表示',
         submenu: [
             {
                 label: 'ページを再読み込み',
                 accelerator: 'CmdOrCtrl+R',
-                click: function() { remote.getCurrentWindow().reload(); }
+                click: function() {
+                    webview.reload();
+                }
             },
-            {
+            /*{
                 label: '開発ツール',
                 accelerator: 'Alt+CmdOrCtrl+I',
                 click: function() { remote.getCurrentWindow().toggleDevTools(); }
+            },*/
+            {
+                label: 'ウィンドウを閉じる',
+                accelerator: 'CmdOrCtrl+W',
+                role: 'close'
             }
         ]
-    },*/
+    },
     {
-        label: 'ウィンドウ',
+        label: '機能',
         submenu: [
             {
                 label: '音声ミュート',
                 accelerator: 'CmdOrCtrl+M',
-                click: function() { mute(); }
+                click: function() { volumeMute(); }
             },
             {
                 label: 'スクリーンショット',
                 accelerator: 'CmdOrCtrl+S',
-                click: function() { capture(); }
+                click: function() {
+                    capture(PATH);
+                    if (TweetWindow) { TweetWindow.reload(); }
+                }
             },
             {
                 label: '画像をツイート',
@@ -64,7 +67,7 @@ var template = [
         role: 'help',
         submenu: [
             {
-                label: appName + ' ヘルプ',
+                label: application.name + ' ヘルプ',
                 click: function () {
                     electron.shell.openExternal('https://github.com/roamer7038/KanColleBrowser')
                 }

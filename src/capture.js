@@ -2,9 +2,8 @@
 
 const mkdirp = require('mkdirp');
 const nativeImage = electron.nativeImage;
-const PATH = os.homedir() + '/Pictures/'+ appName +'/';
 
-module.exports = function(){
+module.exports = function(PATH){
     const image = nativeImage.createEmpty();
     const stamp = timestamp();
     const rect = {

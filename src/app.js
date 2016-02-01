@@ -3,11 +3,10 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const globalShortcut = electron.globalShortcut;
 
-//electron.crashReporter.start();
+electron.crashReporter.start();
 
-var mainWindow = null;
+let mainWindow = null;
 app.on('window-all-closed', function() {
     app.quit();
 });
@@ -15,15 +14,12 @@ app.on('window-all-closed', function() {
 app.commandLine.appendSwitch('ppapi-flash-path', __dirname + '/plugins/PepperFlashPlayer.plugin');
 app.commandLine.appendSwitch('ppapi-flash-version', '20.0.0.255');
 
-
 app.on('ready', function() {
     mainWindow = new BrowserWindow( {
         width: 800, height: 502,
         frame: true,
-        show: true,
         transparent: false,
         resizable: false,
-        center: true,
         'web-preferences': {
             'plugins': true
         }
@@ -33,8 +29,4 @@ app.on('ready', function() {
         mainWindow = null;
         app.quit();
     });
-});
-
-app.on('will-quit', function(){
-    globalShortcut.unregisterAll();
 });

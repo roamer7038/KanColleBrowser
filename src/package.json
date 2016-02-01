@@ -1,11 +1,11 @@
 {
-  "name": "officelife",
-  "version": "0.4.1",
+  "name": "KanColleOffice",
+  "version": "0.4.2",
   "author": "roamer7038",
   "main": "app.js",
   "devDependencies": {
-    "electron-prebuilt": "0.35.1",
-    "electron-packager": "5.1.1"
+    "electron-prebuilt": "0.36.7",
+    "electron-packager": "^5.2.1"
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
@@ -17,6 +17,7 @@
   "description": "The KanColleBrowser made with Electron.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
     "build": "electron-packager . KanColleBrowser --platform=darwin --arch=x64 --version=0.35.1 --out=../build/Release/ --overwrite"
   },
   "plugins":{

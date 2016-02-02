@@ -94,7 +94,7 @@ function tweetCapture() {
 let ConfigWindow = null;
 function openConfig() {
     if ( ConfigWindow ) {
-        ConfigWindow.fucus();
+        ConfigWindow.focus();
         return 0;
     }
     ConfigWindow = new BrowserWindow ({

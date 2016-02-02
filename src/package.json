@@ -1,6 +1,6 @@
 {
   "name": "KanColleOffice",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "author": "roamer7038",
   "main": "app.js",
   "devDependencies": {

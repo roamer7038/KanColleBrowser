@@ -11,9 +11,13 @@ var template = [
                 role: 'about'
             },
             {
+                label: '設定',
+                click: function() { openConfig(); }
+            },
+            {
                 label: '終了',
                 accelerator: 'CmdOrCtrl+Q',
-                click: function() { remote.getCurrentWindow().close(); }
+                click: function() { app.quit(); }
             }
         ]
     },

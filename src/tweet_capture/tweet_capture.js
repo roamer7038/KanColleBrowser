@@ -3,7 +3,6 @@
 // jQueryをローカルで扱う
 window.jQuery = window.$ = require('jquery');
 
-
 const fs = require('fs');
 const os = require('os');
 const electron = require('electron');
@@ -13,10 +12,10 @@ const Twitter = require('twitter');
 const OAuth = require('oauth').OAuth;
 const reg = /(.[.]jpg|.[.]jpeg|.[.]png|.[.]gif)/;
 let PATH = os.homedir() + '/Pictures/鎮守府ぐらし！/';
-let img, media;
+let img ='', media;
 
 // PATH先のディレクトリの画像一覧を出力
-fs.readdir( PATH , function(err, files){
+fs.readdir( PATH , function(err, files) {
     if (err) throw err;
     let fileList = [];
     files.forEach(function (file) {
@@ -26,11 +25,11 @@ fs.readdir( PATH , function(err, files){
     });
     fileList.forEach(function (file) {
         let filePath = PATH + file;
-        img = '<span class="img-box"><img src="'
+        img += '<span class="img-box"><img src="'
             + filePath + '"><p><span class="filename">'
             + file +'</span></p></span>';
-        $('#output').append(img);
     });
+    $('#output').append(img);
 });
 
 
@@ -45,12 +44,12 @@ try {
     const account = require('./account');
     token.ACCESS_TOKEN_KEY = account.ACCESS_TOKEN_KEY;
     token.ACCESS_TOKEN_SECRET = account.ACCESS_TOKEN_SECRET;
-} catch (error){
+} catch (error) {
     console.log(error);
 }
 
 // OAuth認証
-if(token.ACCESS_TOKEN_KEY == null){
+if(token.ACCESS_TOKEN_KEY == null) {
     const authUrl = 'https://api.twitter.com/oauth/authenticate?oauth_token=';
     const oauth = new OAuth(
         'https://api.twitter.com/oauth/request_token',
@@ -62,15 +61,15 @@ if(token.ACCESS_TOKEN_KEY == null){
         'HMAC-SHA1'
     );
 
-    oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+    oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results) {
         let url = authUrl + oauth_token;
         const loginWindow = new BrowserWindow({width: 800, height: 600});
-        loginWindow.webContents.on('will-navigate', function(event, url){
+        loginWindow.webContents.on('will-navigate', function(event, url) {
             let urlinfo = require('url').parse(url, true);
-            if(urlinfo.query.oauth_verifier){
+            if(urlinfo.query.oauth_verifier) {
                 oauth.getOAuthAccessToken(oauth_token, oauth_token_secret,
                     urlinfo.query.oauth_verifier,
-                    function(error, oauth_access_token, oauth_access_token_secret){
+                    function(error, oauth_access_token, oauth_access_token_secret) {
                         token.ACCESS_TOKEN_KEY = oauth_access_token;
                         token.ACCESS_TOKEN_SECRET = oauth_access_token_secret;
                         fs.writeFile(__dirname + '/account.json', JSON.stringify(token, null, '   '));
@@ -87,7 +86,7 @@ if(token.ACCESS_TOKEN_KEY == null){
     });
 }
 
-const client = new Twitter({
+const client = new Twitter ({
     consumer_key        : token.CONSUMER_KEY,
     consumer_secret     : token.CONSUMER_SECRET,
     access_token_key    : token.ACCESS_TOKEN_KEY,
@@ -95,18 +94,18 @@ const client = new Twitter({
 });
 
 // 画像をツイートする
-function post(){
+function post() {
     let tweet = document.forms.tweetForm.tweetArea.value;
     let data = fs.readFileSync(media);
-    client.post('media/upload', {media: data}, function(error, media, response){
-        if(!error){
+    client.post('media/upload', {media: data}, function(error, media, response) {
+        if(!error) {
             console.log(media);
         }
         let status = {
             status: tweet,
             media_ids: media.media_id_string
         };
-        client.post('statuses/update', status, function(error, tweet, response){
+        client.post('statuses/update', status, function(error, tweet, response) {
             if(!error) {
                 console.log(tweet);
                 document.forms.tweetForm.tweetArea.value = '';
@@ -116,7 +115,7 @@ function post(){
 }
 
 // クリックした画像のURIを取得
-$(document).on('click', "img", function(){
+$(document).on('click', "img", function() {
     $('img').removeClass('active');
     $(this).addClass('active');
     media = this.src;
@@ -125,11 +124,11 @@ $(document).on('click', "img", function(){
 });
 
 // ボタンイベント
-$('#upload').click(function(){
+$('#upload').click(function() {
     post();
 });
 
-$('#close').click(function(){
+$('#close').click(function() {
     remote.getCurrentWindow().close();
 });
 

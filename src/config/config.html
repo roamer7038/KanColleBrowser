@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>設定</title>
+    <link rel="stylesheet" href="../node_modules/photon/dist/css/photon.css">
+    <link rel="stylesheet" href="config.css">
+</head>
+<body>
+
+<div class="window">
+    <div class="window-content">
+        <div class="pane-group">
+            <div class="pane">
+                <form>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="volume"> 起動時の消音
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+            <button class="btn btn-default" id="cancel">
+                Cancel
+            </button>
+            <button class="btn btn-primary pull-right" id="apply">
+                Apply
+            </button>
+        </div>
+    </footer>
+</div>
+
+<script src="config.js"></script>
+</body>
+</html>

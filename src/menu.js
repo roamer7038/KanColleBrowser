@@ -31,11 +31,11 @@ var template = [
                     webview.reload();
                 }
             },
-            /*{
+            {
                 label: '開発ツール',
                 accelerator: 'Alt+CmdOrCtrl+I',
                 click: function() { remote.getCurrentWindow().toggleDevTools(); }
-            },*/
+            },
             {
                 label: 'ウィンドウを閉じる',
                 accelerator: 'CmdOrCtrl+W',

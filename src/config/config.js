@@ -26,7 +26,7 @@ catch (error) {
 function save() {
     config.startVolume = $("[name=volume]").prop("checked");
     let json = JSON.stringify(config, null, '   ');
-    fs.writeFile('./config/config.json', json);
+    fs.writeFile(__dirname + '/config.json', json);
     remote.getCurrentWindow().close();
 }
 

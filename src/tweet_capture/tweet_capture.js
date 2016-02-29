@@ -8,6 +8,7 @@ const os = require('os');
 const electron = require('electron');
 const remote = electron.remote;
 const BrowserWindow = remote.BrowserWindow;
+const globalShortcut = remote.globalShortcut;
 const Twitter = require('twitter');
 const OAuth = require('oauth').OAuth;
 const reg = /(.[.]jpg|.[.]jpeg|.[.]png|.[.]gif)/;
@@ -133,3 +134,19 @@ $('#close').click(function() {
 });
 
 
+remote.getCurrentWindow().on('focus', function() {
+    shortcut();
+});
+remote.getCurrentWindow().on('blur', function(){
+    globalShortcut.unregisterAll();
+});
+
+globalShortcut.register('CmdOrCtrl+W', function() {
+    remote.getCurrentWindow().close();
+});
+globalShortcut.register('CmdOrCtrl+R', function() {
+    remote.getCurrentWindow().reload();
+});
+globalShortcut.register('CmdOrCtrl+Q', function() {
+    app.quit();
+});

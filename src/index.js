@@ -11,7 +11,7 @@ const application = require('./package');
 
 let config;
 try {
-    config = require('./config/config.json');
+    config = require(__dirname + '/config/config.json');
 }
 catch(error) {
     config = {
@@ -56,8 +56,9 @@ function volumeMute() {
 
 // 余分な部分を非表示にする
 function insertCss(){
-    fs.readFile('./css/insert.css','utf-8',function(err, data) {
+    fs.readFile(__dirname + '/css/insert.css','utf8',function(err, data) {
         webview.insertCSS(data);
+        if(err) console.error(err);
     });
 }
 
@@ -69,6 +70,16 @@ function shortcut(){
     globalShortcut.register('CmdOrCtrl+S', function() {
         capture(PATH);
         if (TweetWindow) { TweetWindow.reload(); }
+    });
+    globalShortcut.register('CmdOrCtrl+T', function() {
+        tweetCapture();
+    });
+    globalShortcut.register('CmdOrCtrl+W', function() {
+        remote.getCurrentWindow().close();
+    });
+    globalShortcut.register('CmdOrCtrl+R', function() {
+        globalShortcut.unregisterAll();
+        remote.getCurrentWindow().reload();
     });
     globalShortcut.register('CmdOrCtrl+Q', function() {
         app.quit();

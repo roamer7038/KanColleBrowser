@@ -30,3 +30,4 @@ app.on('ready', function() {
         app.quit();
     });
 });
+

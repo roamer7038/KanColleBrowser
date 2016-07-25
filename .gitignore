@@ -5,9 +5,6 @@
 lib/
 account.json
 
-# config
-config.json
-
 # Logs
 logs
 *.log

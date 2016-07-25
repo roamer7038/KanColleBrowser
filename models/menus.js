@@ -1,40 +1,15 @@
+'use strict';
+
 const electron = require('electron');
 const Menu = electron.Menu;
+const ipcMain = electron.ipcMain;
+const os = require('os');
+const capture = require('./capture');
+
+let PATH = os.homedir() + '/Pictures/screenshots/'; /* スクリーンショット保存場所 */
 
 
 const template = [
-    {
-        label: 'Edit',
-        submenu: [
-            {
-                role: 'undo'
-            },
-            {
-                role: 'redo'
-            },
-            {
-                type: 'separator'
-            },
-            {
-                role: 'cut'
-            },
-            {
-                role: 'copy'
-            },
-            {
-                role: 'paste'
-            },
-            {
-                role: 'pasteandmatchstyle'
-            },
-            {
-                role: 'delete'
-            },
-            {
-                role: 'selectall'
-            },
-        ]
-    },
     {
         label: 'View',
         submenu: [
@@ -52,10 +27,43 @@ const template = [
                 label: 'Toggle Developer Tools',
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
                 click(item, focusedWindow) {
-                    if (focusedWindow)
-                        focusedWindow.webContents.toggleDevTools();
+                    if (focusedWindow) focusedWindow.webContents.toggleDevTools();
                 }
             },
+        ]
+    },
+    {
+        label: 'Tool',
+        submenu: [
+            {
+                /* スクリーンショット */
+                label: 'Screenshot',
+                accelerator: 'CmdOrCtrl+S',
+                click(item, focusedWindow) {
+                    if (focusedWindow) capture(PATH, focusedWindow);
+                }
+            },
+            {
+                /* ミュート */
+                label: 'Mute',
+                accelerator: 'CmdOrCtrl+M',
+                click(item, focusedWindow) {
+                    if (focusedWindow) {
+                        focusedWindow.webContents.send('mute', 'mute');
+                    }
+                }
+            },
+            {
+                /* 常に最前面 */
+                label: 'AlwaysOnTop',
+                accelerator: 'CmdOrCtrl+P',
+                click(item, focusedWindow) {
+                    if (focusedWindow) {
+                        if(focusedWindow.isAlwaysOnTop()) focusedWindow.setAlwaysOnTop(false);
+                        else focusedWindow.setAlwaysOnTop(true);
+                    }
+                }
+            }
         ]
     },
     {
@@ -115,7 +123,7 @@ if (process.platform === 'darwin') {
             },
         ]
     });
-    // Window menu.
+    /* Window menu. */
     template[3].submenu = [
         {
             label: 'Close',

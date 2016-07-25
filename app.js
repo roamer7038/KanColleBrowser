@@ -30,6 +30,7 @@ app.on('ready', ()=> {
         frame: true,
         transparent: false,
         resizable: false,
+        fullscreenable: false,
         'web-preferences': {
             'plugins': true
         }
@@ -43,8 +44,8 @@ app.on('ready', ()=> {
     Menu.setApplicationMenu(menu);
 });
 
-/* Renderから設定読み込む */
-ipcMain.on('startConfig', (event, message)=> {
+/* 起動時の初期設定読み込み */
+ipcMain.on('onConfig', (event, message)=> {
     const config = require('./config/config');
-    event.sender.send('syncConfig', config);
+    event.sender.send('onConfig', config);
 });

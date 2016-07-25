@@ -33,7 +33,7 @@ const template = [
         ]
     },
     {
-        label: 'Tool',
+        label: 'Tools',
         submenu: [
             {
                 /* スクリーンショット */

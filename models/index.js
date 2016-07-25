@@ -12,7 +12,7 @@ const webview = document.getElementById("webview");
 /* ページ読み込み開始時 */
 webview.addEventListener('did-start-loading', ()=> {
     /* 起動時のミュート設定 */
-    ipcRenderer.send('startConfig','ping');
+    ipcRenderer.send('onConfig','ping');
 });
 
 /* ページ読み込み終了時 */
@@ -28,12 +28,13 @@ function insertCss() {
     });
 }
 
-ipcRenderer.on('startConfig', (event, config)=> {
-    webview.setAudioMuted(config.onMuteVolume);
+/* 起動時の初期設定読み込み */
+ipcRenderer.on('onConfig', (event, config)=> {
+    webview.setAudioMuted(config.onAudioMuted);
 });
 
+/* ミュート設定切替 */
 ipcRenderer.on('mute', (event, config)=> {
     if(webview.isAudioMuted()) webview.setAudioMuted(false);
     else webview.setAudioMuted(true);
-    console.log(webview.isAudioMuted());
 });

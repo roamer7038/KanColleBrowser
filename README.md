@@ -9,7 +9,7 @@ The KanColleBrowser made with Electron.
 * Tweet ScreenShot.
 
 ## Image
-![鎮守府ぐらし！](images/image.png)
+![鎮守府ぐらし！](screenshot/image.png)
 
 ## Download
 Not released yet.
@@ -20,4 +20,4 @@ I does not bear responsibility, such as BAN of using this software.
 ## License
 [MIT](./LICENSE)
 
-Copyright (c) 2015 @roamer7038 
+Copyright (c) 2015-2016 @roamer7038 

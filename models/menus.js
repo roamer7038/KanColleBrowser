@@ -2,16 +2,15 @@
 
 const electron = require('electron');
 const Menu = electron.Menu;
-const ipcMain = electron.ipcMain;
+const ipcRenderer = electron.ipcRenderer;
 const os = require('os');
 const capture = require('./capture');
 
-let PATH = os.homedir() + '/Pictures/screenshots/'; /* スクリーンショット保存場所 */
-
+let PATH = os.homedir() + '/Pictures/screenshots/'; /* デフォルトスクリーンショット保存場所 */
 
 const template = [
     {
-        label: 'View',
+        label: '表示',
         submenu: [
             {
                 label: 'Reload',
@@ -33,7 +32,7 @@ const template = [
         ]
     },
     {
-        label: 'Tools',
+        label: 'ツール',
         submenu: [
             {
                 /* スクリーンショット */
@@ -47,9 +46,11 @@ const template = [
                 /* ミュート */
                 label: 'Mute',
                 accelerator: 'CmdOrCtrl+M',
+                type: 'checkbox',
                 click(item, focusedWindow) {
                     if (focusedWindow) {
-                        focusedWindow.webContents.send('mute', 'mute');
+                        focusedWindow.webContents.send('AudioMuted', 'ping');
+                        return item.checked;
                     }
                 }
             },
@@ -57,16 +58,19 @@ const template = [
                 /* 常に最前面 */
                 label: 'AlwaysOnTop',
                 accelerator: 'CmdOrCtrl+P',
+                type: 'checkbox',
                 click(item, focusedWindow) {
                     if (focusedWindow) {
-                        if(focusedWindow.isAlwaysOnTop()) focusedWindow.setAlwaysOnTop(false);
+                        if (focusedWindow.isAlwaysOnTop()) focusedWindow.setAlwaysOnTop(false);
                         else focusedWindow.setAlwaysOnTop(true);
+                        return item.checked;
                     }
                 }
             }
         ]
     },
     {
+        label: 'ウィンドウ',
         role: 'window',
         submenu: [
             {
@@ -82,7 +86,7 @@ const template = [
         submenu: [
             {
                 label: 'Learn More',
-                click() { electron.shell.openExternal('http://electron.atom.io'); }
+                click() { electron.shell.openExternal('https://github.com/roamer7038/KanColleBrowser'); }
             },
         ]
     },

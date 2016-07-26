@@ -8,7 +8,6 @@ const fs = require('fs-extra');
 
 const webview = document.getElementById("webview");
 
-
 /* ページ読み込み開始時 */
 webview.addEventListener('did-start-loading', ()=> {
     /* 起動時のミュート設定 */
@@ -34,7 +33,7 @@ ipcRenderer.on('onConfig', (event, config)=> {
 });
 
 /* ミュート設定切替 */
-ipcRenderer.on('mute', (event, config)=> {
+ipcRenderer.on('AudioMuted', ()=> {
     if(webview.isAudioMuted()) webview.setAudioMuted(false);
     else webview.setAudioMuted(true);
 });
